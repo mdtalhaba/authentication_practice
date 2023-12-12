@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+
+    <form method="post" style="width:500px; margin: auto;" class="py-5" novalidate>
+        {% csrf_token %}
+        <h3>Edit Profile</h3>
+        <!--{{form | crispy }}-->
+        {% for fm in form %}
+        <div>
+            
+            {{ fm.label_tag }}
+            {{ fm }}
+            <p>{{ fm.errors | striptags }}</p>
+        </div>
+        {% endfor %}
+
+        <button class="btn btn-dark mt-2" type="submit">Submit</button><br>
+        <a href="{% url "pass_change" %}" class="btn btn-warning btn-sm mt-4 px-3" type="submit">Change Your Password</a><br>
+        <a href="{% url "set_pass" %}" class="btn btn-warning btn-sm mt-4 px-4" type="submit">Set Password</a>
+    </form>
+
+{% endblock body %}

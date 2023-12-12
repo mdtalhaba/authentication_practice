@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+
+    <form method="post" style="width:500px; margin: auto;" class="py-5" novalidate>
+        {% csrf_token %}
+        <h3>Register</h3>
+        <!--{{form | crispy }}-->
+        {% for fm in form %}
+        <div>
+            
+            {{ fm.label_tag }}
+            {{ fm }}
+            <p>{{ fm.errors | striptags }}</p>
+        </div>
+        {% endfor %}
+
+        <small>Already Have an Account / <a href="{% url "login" %}">Login</a></small><br>
+
+        <button class="btn btn-dark mt-2" type="submit">Submit</button>
+    </form>
+
+{% endblock body %}
